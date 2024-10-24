@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "135427325500",
+    "project_id": "colorlistapp",
+    "storage_bucket": "colorlistapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135427325500:android:e15233e4890c7fb5af4d39",
+        "android_client_info": {
+          "package_name": "com.example.colorlistapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsCuzxG5yB_NcrvyB4qJ4LhfAdvjdQezg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
