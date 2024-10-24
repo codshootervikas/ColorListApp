@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.google.gms.google.services)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -87,12 +86,5 @@ dependencies {
     implementation (libs.firebase.database.ktx)
 
     implementation(libs.androidx.material.icons.extended)
-
-
-    //Dagger-Hilt
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
-    ksp(libs.androidx.hilt.compiler)
-    implementation(libs.androidx.hilt.navigation.compose)
 
 }

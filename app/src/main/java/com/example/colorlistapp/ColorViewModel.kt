@@ -9,10 +9,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.colorlistapp.db.ColorEntity
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import kotlin.random.Random
 
-class ColorViewModel(private val repository: ColorRepository) : ViewModel() {
+@HiltViewModel
+class ColorViewModel @Inject constructor(private val repository: ColorRepository) : ViewModel() {
     val colors: LiveData<List<ColorEntity>> = repository.allColors
     private val _syncCount = MutableLiveData<Int>()
     val syncCount: LiveData<Int> get() = _syncCount
