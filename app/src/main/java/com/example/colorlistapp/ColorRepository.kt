@@ -5,19 +5,20 @@ import com.example.colorlistapp.db.ColorDao
 import com.example.colorlistapp.db.ColorEntity
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.flow.Flow
+class ColorRepository(private val colorDao: ColorDao) {
+    private val firebaseDatabase = FirebaseDatabase.getInstance().getReference("colors")
 
-class ColorRepository(private val colorDao: ColorDao, private val firebaseRepository: FirebaseRepository) {
+    val allColors: LiveData<List<ColorEntity>> = colorDao.getAllColors()
 
-    fun getAllColors(): Flow<List<ColorEntity>> {
-        return colorDao.getAllColors()
-    }
-
-    suspend fun insertColor(color: ColorEntity) {
+    suspend fun insert(color: ColorEntity) {
         colorDao.insertColor(color)
-        firebaseRepository.syncColorToFirebase(color) // Sync to Firebase
     }
 
-    fun getColorsFromFirebase(): LiveData<List<ColorEntity>> {
-        return firebaseRepository.getColorsFromFirebase()
+    suspend fun syncColorsToFirebase() {
+        val colors = allColors.value ?: return
+        for (color in colors) {
+            firebaseDatabase.push().setValue(color)
+        }
     }
 }
+

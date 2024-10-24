@@ -2,6 +2,7 @@ package com.example.colorlistapp.db
 
 import android.annotation.SuppressLint
 import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Database
 import androidx.room.Delete
@@ -17,7 +18,7 @@ import kotlinx.coroutines.flow.Flow
 @Entity(tableName = "colors")
 data class ColorEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val colorHex: String,
+    val colorCode: String,
     val timestamp: Long
 )
 
@@ -26,31 +27,14 @@ interface ColorDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertColor(color: ColorEntity)
 
-    @Query("SELECT * FROM colors ORDER BY timestamp DESC")
-    fun getAllColors(): Flow<List<ColorEntity>>
+    @Query("SELECT * FROM colors")
+    fun getAllColors(): LiveData<List<ColorEntity>>
 
-    @Delete
-    suspend fun deleteColor(color: ColorEntity)
+    @Query("DELETE FROM colors")
+    suspend fun deleteAllColors()
 }
 
 @Database(entities = [ColorEntity::class], version = 1)
-abstract class ColorDatabase : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
     abstract fun colorDao(): ColorDao
-
-    companion object {
-        @Volatile
-        private var INSTANCE: ColorDatabase? = null
-
-        fun getDatabase(@SuppressLint("RestrictedApi") context: Application): ColorDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    ColorDatabase::class.java,
-                    "color_database"
-                ).build()
-                INSTANCE = instance
-                instance
-            }
-        }
-    }
 }

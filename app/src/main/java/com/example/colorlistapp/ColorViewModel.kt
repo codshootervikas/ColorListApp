@@ -4,37 +4,39 @@ import android.app.Application
 import android.graphics.Color
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.colorlistapp.db.ColorDatabase
 import com.example.colorlistapp.db.ColorEntity
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-class ColorViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val colorDao = ColorDatabase.getDatabase(application).colorDao()
-    private val firebaseRepo = FirebaseRepository()
-    private val repository = ColorRepository(colorDao, firebaseRepo)
-
-    val allColors: LiveData<List<ColorEntity>> = repository.getAllColors().asLiveData()
-
-    val firebaseColors: LiveData<List<ColorEntity>> = repository.getColorsFromFirebase()
+class ColorViewModel(private val repository: ColorRepository) : ViewModel() {
+    val colors: LiveData<List<ColorEntity>> = repository.allColors
+    private val _syncCount = MutableLiveData<Int>()
+    val syncCount: LiveData<Int> get() = _syncCount
 
     fun addColor() {
-        val randomColor = ColorEntity(
-            colorHex = getRandomColor(),
-            timestamp = System.currentTimeMillis()
-        )
+        val colorCode = generateRandomColor()
+        val timestamp = System.currentTimeMillis()
+        val newColor = ColorEntity(colorCode = colorCode, timestamp = timestamp)
         viewModelScope.launch {
-            repository.insertColor(randomColor)
+            repository.insert(newColor)
         }
     }
 
-    private fun getRandomColor(): String {
-        val rnd = Random(6)
-        val color = Color.rgb(rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
-        return String.format("#%06X", (0xFFFFFF and color))
+    fun syncColors() {
+        viewModelScope.launch {
+            repository.syncColorsToFirebase()
+            // Update sync count logic here
+        }
+    }
+
+    private fun generateRandomColor(): /*String*/ {
+        // Generate a random hex color code
+       /* val random = Random()*/
+       /* return String.format("#%06X", random.nextInt(0xFFFFFF + 1))8*/
     }
 }
 
