@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.example.colorlistapp.db.ColorDao
 import com.example.colorlistapp.db.ColorEntity
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.coroutines.flow.Flow
 class ColorRepository(private val colorDao: ColorDao) {
     private val firebaseDatabase = FirebaseDatabase.getInstance().getReference("colors")
 

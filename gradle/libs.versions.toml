@@ -1,21 +1,22 @@
 [versions]
-agp = "8.5.1"
+agp = "8.5.2"
 firebaseDatabaseKtx = "21.0.0"
-kotlin = "1.9.0"
+kotlin = "2.0.20"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-kotlinxCoroutinesAndroid = "1.8.1"
+kotlinxCoroutinesAndroid = "1.9.0"
 lifecycleRuntimeKtx = "2.8.6"
 activityCompose = "1.9.3"
-composeBom = "2024.04.01"
+composeBom = "2024.10.00"
 googleGmsGoogleServices = "4.4.2"
 firebaseDatabase = "21.0.0"
 roomRuntime = "2.6.1"
 runtimeLivedata = "1.7.4"
 roomExternalAntlr = "2.7.0-alpha10"
 composeMaterial = "1.4.0"
+kspVersion = "2.0.20-1.0.25"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,9 +43,12 @@ androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtim
 androidx-room-external-antlr = { group = "androidx.room", name = "room-external-antlr", version.ref = "roomExternalAntlr" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
 androidx-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "composeMaterial" }
+androidx-material-icons-extended = {  group = "androidx.compose.material", name = "material-icons-extended"}
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
-
+ksp = { id = "com.google.devtools.ksp" ,  version.ref = "kspVersion"}
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

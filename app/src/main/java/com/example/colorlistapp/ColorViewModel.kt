@@ -18,7 +18,7 @@ class ColorViewModel(private val repository: ColorRepository) : ViewModel() {
     val syncCount: LiveData<Int> get() = _syncCount
 
     fun addColor() {
-        val colorCode = generateRandomColor()
+        val colorCode = getRandomColorHex()
         val timestamp = System.currentTimeMillis()
         val newColor = ColorEntity(colorCode = colorCode, timestamp = timestamp)
         viewModelScope.launch {
@@ -33,10 +33,12 @@ class ColorViewModel(private val repository: ColorRepository) : ViewModel() {
         }
     }
 
-    private fun generateRandomColor(): /*String*/ {
-        // Generate a random hex color code
-       /* val random = Random()*/
-       /* return String.format("#%06X", random.nextInt(0xFFFFFF + 1))8*/
+    fun getRandomColorHex(): String {
+        val red = Random.nextInt(0, 256)
+        val green = Random.nextInt(0, 256)
+        val blue = Random.nextInt(0, 256)
+
+        return String.format("#%02X%02X%02X", red, green, blue)
     }
 }
 
