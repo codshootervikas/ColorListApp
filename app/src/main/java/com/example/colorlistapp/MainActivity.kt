@@ -39,7 +39,7 @@ import java.util.Locale
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    /*private val viewModel: ColorViewModel by viewModels()*/
+    /*private val vie wModel: ColorViewModel by viewModels()*/
     private lateinit var viewModel: ColorViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
