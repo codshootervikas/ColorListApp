@@ -4,7 +4,10 @@ import androidx.lifecycle.LiveData
 import com.example.colorlistapp.db.ColorDao
 import com.example.colorlistapp.db.ColorEntity
 import com.google.firebase.database.FirebaseDatabase
-class ColorRepository(private val colorDao: ColorDao) {
+import javax.inject.Inject
+
+class ColorRepository @Inject constructor(
+    private val colorDao: ColorDao) {
     private val firebaseDatabase = FirebaseDatabase.getInstance().getReference("colors")
 
     val allColors: LiveData<List<ColorEntity>> = colorDao.getAllColors()

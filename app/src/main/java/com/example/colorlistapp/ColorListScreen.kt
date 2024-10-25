@@ -15,6 +15,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.wear.compose.material.Colors
 import com.example.colorlistapp.db.ColorEntity
 import java.text.SimpleDateFormat
@@ -23,7 +24,7 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ColorListScreen(viewModel: ColorViewModel) {
+fun ColorListScreen(viewModel: ColorViewModel= hiltViewModel()) {
     // Observe the colors and sync count
     val colors by viewModel.colors.observeAsState(emptyList())
     val syncCount by viewModel.syncCount.observeAsState(0)

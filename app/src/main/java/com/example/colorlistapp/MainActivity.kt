@@ -30,12 +30,17 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import com.example.colorlistapp.db.ColorEntity
 import com.example.colorlistapp.ui.theme.ColorListAppTheme
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val viewModel: ColorViewModel by viewModels()
+    /*private val viewModel: ColorViewModel by viewModels()*/
+    private lateinit var viewModel: ColorViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Pass the factory to the ViewModelProvider
