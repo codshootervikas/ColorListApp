@@ -24,8 +24,10 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ColorListScreen(viewModel: ColorViewModel= hiltViewModel()) {
+fun ColorListScreen() {
     // Observe the colors and sync count
+
+    val viewModel: ColorViewModel = hiltViewModel()
     val colors by viewModel.colors.observeAsState(emptyList())
     val syncCount by viewModel.syncCount.observeAsState(0)
 

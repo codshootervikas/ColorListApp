@@ -15,7 +15,9 @@ import javax.inject.Inject
 import kotlin.random.Random
 
 @HiltViewModel
-class ColorViewModel @Inject constructor(private val repository: ColorRepository) : ViewModel() {
+class ColorViewModel @Inject constructor(
+    private val repository: ColorRepository
+) : ViewModel() {
     val colors: LiveData<List<ColorEntity>> = repository.allColors
     private val _syncCount = MutableLiveData<Int>()
     val syncCount: LiveData<Int> get() = _syncCount

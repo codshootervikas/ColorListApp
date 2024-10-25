@@ -1,8 +1,6 @@
 [versions]
 agp = "8.5.2"
 firebaseDatabaseKtx = "21.0.0"
-hiltAndroid = "2.51.1"
-hiltAndroidVersion = "2.52"
 kotlin = "2.0.20"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -32,8 +30,6 @@ androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-view
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 firebase-database-ktx = { module = "com.google.firebase:firebase-database-ktx", version.ref = "firebaseDatabaseKtx" }
-hilt-android-v252 = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroidVersion" }
-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltAndroidVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

@@ -7,7 +7,8 @@ import com.google.firebase.database.FirebaseDatabase
 import javax.inject.Inject
 
 class ColorRepository @Inject constructor(
-    private val colorDao: ColorDao) {
+    private val colorDao: ColorDao
+) {
     private val firebaseDatabase = FirebaseDatabase.getInstance().getReference("colors")
 
     val allColors: LiveData<List<ColorEntity>> = colorDao.getAllColors()
